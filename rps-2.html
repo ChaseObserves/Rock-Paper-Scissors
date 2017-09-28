@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+</head>
+
+<body>
+
+  <div id="game">
+    <h1>ROCK PAPER SCISSORS</h1>
+      <ul>
+        <li>Press R for Rock</li>
+        <li>Press P for Paper</li>
+        <li>Press S for Scissors</li>
+      </ul>
+      <br><br>
+      <ul>
+        <li>Wins: <span id="wins">0</span></li>
+        <li>Losses: <span id="losses">0</li>
+        <li>Ties: <span id="ties">0</span></li>
+
+  </div>
+
+  <script type="text/javascript">
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+      // If the user tries to hit a key that isn't r, p, or s, an alert will let them know that's not a valid input
+      if (userGuess !== "r" && userGuess !== "p" && userGuess !== "s") {
+        alert("There's only 3 options, champ. R, P, or S")
+          return;
+      }
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      // Alerts the key the user pressed (userGuess).
+      alert("User guess: " + userGuess);
+
+      // Alerts the Computer's guess.
+      alert("Computer guess: " + computerGuess);
+
+      if (computerGuess === "r" && userGuess === "s" || computerGuess === "s" && userGuess === "p" || computerGuess === "p" && userGuess === "r" ) {
+        alert("You lose");
+        document.getElementById("losses").textContent = ++losses;
+      } else if (computerGuess === userGuess) {
+        alert("You tie");
+        document.getElementById("ties").textContent = ++ties;
+      } else {
+        alert("You win");
+        document.getElementById("wins").textContent = ++wins;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
